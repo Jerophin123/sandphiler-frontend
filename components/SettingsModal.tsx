@@ -115,14 +115,13 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4 select-none">
           {/* Translucent overlay backdrop */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             onClick={onClose}
             className="fixed inset-0 bg-black/60 backdrop-blur-md"
           />
@@ -131,8 +130,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            transition={{ type: 'spring', duration: 0.45 }}
+            transition={{ type: 'spring', duration: 0.4 }}
             className="w-full max-w-2xl bg-charcoal-700/90 backdrop-blur-2xl border border-white/[0.08] rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden relative z-10"
           >
             {/* Modal Header */}
@@ -433,6 +431,6 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

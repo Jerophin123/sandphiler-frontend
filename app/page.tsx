@@ -50,7 +50,11 @@ export default function WorkspacePage() {
         {/* Mobile Sidebar Slide-over Drawer Overlay */}
         <AnimatePresence>
           {showSidebarMobile && (
-            <div className="fixed inset-0 z-50 flex md:hidden">
+            <motion.div 
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex md:hidden"
+            >
               {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -82,7 +86,7 @@ export default function WorkspacePage() {
                 {/* Renders the Sidebar */}
                 <Sidebar />
               </motion.div>
-            </div>
+            </motion.div>
           )}
         </AnimatePresence>
 
