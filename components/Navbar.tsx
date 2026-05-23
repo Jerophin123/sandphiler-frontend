@@ -40,28 +40,28 @@ export default function Navbar() {
     switch (connectionStatus) {
       case 'connected':
         return (
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[10px] font-semibold font-mono tracking-wide shadow-[0_2px_8px_rgba(16,185,129,0.08)] flex-shrink-0">
+          <span className="flex items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[10px] font-semibold font-mono tracking-wide shadow-[0_2px_8px_rgba(16,185,129,0.08)] flex-shrink-0" title="Online">
             <span className="relative flex h-2 w-2 flex-shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            Online
+            <span className="hidden sm:inline">Online</span>
           </span>
         );
       case 'connecting':
         return (
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[10px] font-semibold font-mono tracking-wide animate-pulse flex-shrink-0">
+          <span className="flex items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-[10px] font-semibold font-mono tracking-wide animate-pulse flex-shrink-0" title="Connecting">
             <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
             </span>
-            Connecting
+            <span className="hidden sm:inline">Connecting</span>
           </span>
         );
       default:
         return (
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/25 text-[10px] font-semibold font-mono tracking-wide shadow-[0_2px_8px_rgba(239,68,68,0.08)] flex-shrink-0">
+          <span className="flex items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/25 text-[10px] font-semibold font-mono tracking-wide shadow-[0_2px_8px_rgba(239,68,68,0.08)] flex-shrink-0" title="Offline">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
-            Offline
+            <span className="hidden sm:inline">Offline</span>
           </span>
         );
     }
@@ -69,16 +69,30 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="mx-3.5 mt-3.5 flex items-center justify-between px-4 sm:px-6 py-1.5 bg-charcoal-800/80 backdrop-blur-xl border border-white/[0.06] rounded-2xl select-none sticky top-0 z-40 gap-2 shadow-2xl">
+      <header className="mx-2 sm:mx-3.5 mt-2 sm:mt-3.5 flex items-center justify-between px-2.5 sm:px-6 py-1.5 bg-charcoal-800/80 backdrop-blur-xl border border-white/[0.06] rounded-2xl select-none sticky top-0 z-40 gap-1.5 sm:gap-2 shadow-2xl">
         
         {/* Left section: Platform Branding & Mobile Toggle */}
-        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+        <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
+          {/* Mobile Sidebar Toggle Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setShowSidebarMobile(!showSidebarMobile)}
+            className={`md:hidden flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 flex-shrink-0 border border-white/[0.06] bg-white/[0.03] ${
+              showSidebarMobile
+                ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25 shadow-sm' 
+                : 'text-graphite-400 hover:text-white hover:bg-white/[0.05]'
+            }`}
+            title="Toggle Sidebar"
+          >
+            <SidebarIcon className="w-4 h-4 flex-shrink-0" />
+          </motion.button>
 
-
+          {/* Desktop Brand Icon */}
           <motion.div 
             whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
             transition={{ duration: 0.4 }}
-            className="flex items-center justify-center w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-[0_2px_10px_rgba(16,185,129,0.15)] flex-shrink-0"
+            className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-[0_2px_10px_rgba(16,185,129,0.15)] flex-shrink-0"
           >
             <Terminal className="w-4.5 h-4.5 text-emerald-400 flex-shrink-0" />
           </motion.div>
@@ -95,22 +109,7 @@ export default function Navbar() {
         </div>
 
         {/* Center section: Unified Layout & Execution Control Pill */}
-        <div className="flex items-center gap-1.5 p-1 bg-black/35 border border-white/[0.08] rounded-full flex-shrink-0 shadow-[inset_0_1px_2px_rgba(0,0,0,0.35)]">
-          {/* Mobile Sidebar Toggle Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setShowSidebarMobile(!showSidebarMobile)}
-            className={`md:hidden flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 flex-shrink-0 ${
-              showSidebarMobile
-                ? 'bg-emerald-500/10 text-emerald-400 shadow-sm' 
-                : 'text-graphite-400 hover:text-white hover:bg-white/[0.05]'
-            }`}
-            title="Toggle Sidebar"
-          >
-            <SidebarIcon className="w-4 h-4 flex-shrink-0" />
-          </motion.button>
-
+        <div className="flex items-center gap-1 p-1 bg-black/35 border border-white/[0.08] rounded-full flex-shrink-0 shadow-[inset_0_1px_2px_rgba(0,0,0,0.35)]">
           {/* Desktop Sidebar Toggle Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -167,7 +166,7 @@ export default function Navbar() {
         </div>
 
         {/* Right section: System Status and Settings */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
           {getConnectionBadge()}
           
           <motion.button
@@ -175,7 +174,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
             onClick={handleReconnect}
             disabled={connectionStatus === 'connecting'}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-full border text-[10px] font-semibold font-mono tracking-wide transition-all duration-200 flex-shrink-0 ${
+            className={`flex items-center gap-1.5 p-2 sm:px-3 sm:py-1 rounded-full border text-[10px] font-semibold font-mono tracking-wide transition-all duration-200 flex-shrink-0 ${
               connectionStatus === 'disconnected'
                 ? 'bg-emerald-500/10 hover:bg-emerald-500/20 border-emerald-500/25 text-emerald-400 shadow-[0_2px_8px_rgba(16,185,129,0.12)] animate-pulse'
                 : connectionStatus === 'connecting'
@@ -191,7 +190,7 @@ export default function Navbar() {
             >
               <RotateCw className="w-3.5 h-3.5 flex-shrink-0" />
             </motion.div>
-            {connectionStatus === 'disconnected' && <span>Reconnect</span>}
+            {connectionStatus === 'disconnected' && <span className="hidden sm:inline">Reconnect</span>}
             {connectionStatus === 'connected' && <span className="hidden sm:inline">Refresh</span>}
           </motion.button>
 

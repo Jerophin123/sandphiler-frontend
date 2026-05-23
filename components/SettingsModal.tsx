@@ -134,14 +134,14 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             className="w-full max-w-2xl bg-charcoal-700/90 backdrop-blur-2xl border border-white/[0.08] rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden relative z-10"
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 bg-charcoal-800/60 border-b border-white/[0.04]">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-[#2db55d]/10 border border-[#2db55d]/20 text-[#2db55d]">
-                  <Settings className="w-5 h-5" />
+            <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 bg-charcoal-800/60 border-b border-white/[0.04]">
+              <div className="flex items-center gap-2 md:gap-2.5">
+                <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-[#2db55d]/10 border border-[#2db55d]/20 text-[#2db55d]">
+                  <Settings className="w-4 h-4 md:w-5 md:h-5" />
                 </div>
                 <div>
-                  <h2 className="text-white font-semibold text-sm leading-tight font-sans">Workspace Settings</h2>
-                  <p className="text-[10px] text-graphite-400 mt-0.5">Customize environment options and server connections</p>
+                  <h2 className="text-white font-semibold text-xs md:text-sm leading-tight font-sans">Workspace Settings</h2>
+                  <p className="text-[9px] md:text-[10px] text-graphite-400 mt-0.5">Customize environment options and server connections</p>
                 </div>
               </div>
               <motion.button 
@@ -155,14 +155,14 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             </div>
 
             {/* Modal Content - Two Column Layout */}
-            <div className="flex h-[280px] md:h-[310px] overflow-hidden">
+            <div className="flex flex-col md:flex-row h-[340px] md:h-[310px] overflow-hidden">
               
               {/* Left Sidebar Categories */}
-              <div className="w-[180px] flex-shrink-0 bg-charcoal-800/40 border-r border-white/[0.04] p-4 flex flex-col gap-1.5 select-none justify-start">
+              <div className="w-full md:w-[180px] flex-shrink-0 bg-charcoal-800/40 border-b md:border-b-0 md:border-r border-white/[0.04] p-2 md:p-4 flex flex-row md:flex-col gap-1.5 select-none justify-start">
                 <button
                   type="button"
                   onClick={() => setActiveTab('connection')}
-                  className={`relative w-full px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center gap-2.5 text-left z-10 ${
+                  className={`relative flex-1 md:flex-none px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center md:justify-start gap-2 md:gap-2.5 text-left z-10 ${
                     activeTab === 'connection' ? 'text-[#2db55d]' : 'text-graphite-400 hover:text-white hover:bg-white/[0.02]'
                   }`}
                 >
@@ -171,7 +171,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   {activeTab === 'connection' && (
                     <motion.div
                       layoutId="activeModalCategoryBg"
-                      className="absolute inset-0 bg-[#2db55d]/10 border border-[#2db55d]/20 rounded-xl -z-10"
+                      className="absolute inset-0 bg-[#2db55d]/10 border border-[#2db55d]/20 rounded-lg md:rounded-xl -z-10"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -179,7 +179,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 <button
                   type="button"
                   onClick={() => setActiveTab('editor')}
-                  className={`relative w-full px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center gap-2.5 text-left z-10 ${
+                  className={`relative flex-1 md:flex-none px-3 md:px-4 py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center md:justify-start gap-2 md:gap-2.5 text-left z-10 ${
                     activeTab === 'editor' ? 'text-[#2db55d]' : 'text-graphite-400 hover:text-white hover:bg-white/[0.02]'
                   }`}
                 >
@@ -188,7 +188,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   {activeTab === 'editor' && (
                     <motion.div
                       layoutId="activeModalCategoryBg"
-                      className="absolute inset-0 bg-[#2db55d]/10 border border-[#2db55d]/20 rounded-xl -z-10"
+                      className="absolute inset-0 bg-[#2db55d]/10 border border-[#2db55d]/20 rounded-lg md:rounded-xl -z-10"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -196,7 +196,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
               </div>
 
               {/* Right Settings Pane */}
-              <div className="flex-grow overflow-y-auto sleek-scrollbar bg-charcoal-700/30 p-6">
+              <div className="flex-grow overflow-y-auto sleek-scrollbar bg-charcoal-700/30 p-4 md:p-6">
                 <AnimatePresence mode="wait">
                   {activeTab === 'connection' ? (
                     <motion.div 
@@ -204,9 +204,9 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 10 }}
-                      className="flex flex-col gap-4"
+                      className="flex flex-col gap-3.5 md:gap-4"
                     >
-                      <div className="bg-[#2db55d]/5 border border-[#2db55d]/10 px-4 py-3 rounded-2xl text-[11px] text-[#2db55d] leading-normal font-mono flex gap-2">
+                      <div className="bg-[#2db55d]/5 border border-[#2db55d]/10 px-3 md:px-4 py-2 md:py-3 rounded-xl md:rounded-2xl text-[10px] md:text-[11px] text-[#2db55d] leading-normal font-mono flex gap-2">
                         <span className="font-bold flex-shrink-0">ℹ</span>
                         <span>Configure VM backend target. Sandphiler binds compilation queries and standard input loops dynamically to this network host.</span>
                       </div>
@@ -220,34 +220,36 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                           <button
                             type="button"
                             onClick={() => setProtocol('http://')}
-                            className={`relative flex-1 py-2 rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center gap-2 ${
+                            className={`relative flex-1 py-1.5 md:py-2 rounded-xl text-[10px] md:text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center gap-1.5 md:gap-2 ${
                               protocol === 'http://' ? 'bg-[#2db55d] text-white shadow-md' : 'text-graphite-400 hover:text-white'
                             }`}
                           >
                             <Globe className="w-3.5 h-3.5 flex-shrink-0" />
-                            Standard (HTTP / WS)
+                            <span className="hidden sm:inline">Standard (HTTP / WS)</span>
+                            <span className="sm:hidden">HTTP / WS</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => setProtocol('https://')}
-                            className={`relative flex-1 py-2 rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center gap-2 ${
+                            className={`relative flex-1 py-1.5 md:py-2 rounded-xl text-[10px] md:text-xs font-mono font-bold transition-all duration-200 flex items-center justify-center gap-1.5 md:gap-2 ${
                               protocol === 'https://' ? 'bg-[#2db55d] text-white shadow-md' : 'text-graphite-400 hover:text-white'
                             }`}
                           >
                             <Lock className="w-3.5 h-3.5 flex-shrink-0" />
-                            Secure (HTTPS / WSS)
+                            <span className="hidden sm:inline">Secure (HTTPS / WSS)</span>
+                            <span className="sm:hidden">HTTPS / WSS</span>
                           </button>
                         </div>
                       </div>
 
                       {/* Host Address & Port Input Group */}
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-3 gap-2 md:gap-3">
                         <div className="col-span-2 flex flex-col gap-1.5">
                           <label className="text-[10px] text-graphite-400 font-bold uppercase tracking-wider font-mono px-1">
                             VM Host IP / Domain
                           </label>
-                          <div className="flex items-center h-11 bg-black/40 border border-white/[0.06] rounded-2xl focus-within:border-[#2db55d] transition-colors duration-200 overflow-hidden shadow-inner px-3">
-                            <span className="text-graphite-400 text-xs font-mono select-none px-2 border-r border-white/[0.08] mr-2.5 h-7 flex items-center bg-white/[0.02] rounded-lg">
+                          <div className="flex items-center h-11 bg-black/40 border border-white/[0.06] rounded-2xl focus-within:border-[#2db55d] transition-colors duration-200 overflow-hidden shadow-inner px-2.5 md:px-3">
+                            <span className="text-graphite-400 text-xs font-mono select-none px-1.5 md:px-2 border-r border-white/[0.08] mr-2 md:mr-2.5 h-7 flex items-center bg-white/[0.02] rounded-lg">
                               {protocol}
                             </span>
                             <input 
@@ -255,7 +257,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                               value={ip}
                               onChange={(e) => handleIpChange(e.target.value)}
                               placeholder="192.168.1.50"
-                              className="flex-grow bg-transparent border-none outline-none text-white text-sm font-mono focus:ring-0 focus:outline-none"
+                              className="flex-grow bg-transparent border-none outline-none text-white text-xs md:text-sm font-mono focus:ring-0 focus:outline-none"
                             />
                           </div>
                         </div>
@@ -263,13 +265,13 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                           <label className="text-[10px] text-graphite-400 font-bold uppercase tracking-wider font-mono px-1">
                             Port
                           </label>
-                          <div className="flex items-center h-11 bg-black/40 border border-white/[0.06] rounded-2xl focus-within:border-[#2db55d] transition-colors duration-200 overflow-hidden shadow-inner px-3">
+                          <div className="flex items-center h-11 bg-black/40 border border-white/[0.06] rounded-2xl focus-within:border-[#2db55d] transition-colors duration-200 overflow-hidden shadow-inner px-2.5 md:px-3">
                             <input 
                               type="text" 
                               value={port}
                               onChange={(e) => setPort(e.target.value)}
                               placeholder="5000"
-                              className="w-full bg-transparent border-none outline-none text-white text-sm font-mono focus:ring-0 focus:outline-none"
+                              className="w-full bg-transparent border-none outline-none text-white text-xs md:text-sm font-mono focus:ring-0 focus:outline-none"
                             />
                           </div>
                         </div>
@@ -280,7 +282,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                         <motion.div 
                           initial={{ opacity: 0, scale: 0.98 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          className={`px-4 py-3 border rounded-2xl text-xs flex gap-3 items-start transition-colors ${
+                          className={`px-3 md:px-4 py-2.5 md:py-3 border rounded-xl md:rounded-2xl text-xs flex gap-2.5 md:gap-3 items-start transition-colors ${
                             testState === 'testing' ? 'bg-white/[0.02] border-white/[0.06] text-graphite-300' :
                             testState === 'success' ? 'bg-[#2db55d]/10 border-[#2db55d]/20 text-[#2db55d]' :
                             'bg-red-500/10 border-red-500/20 text-red-400'
@@ -290,13 +292,13 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                           {testState === 'success' && <CheckCircle2 className="w-4 h-4 text-[#2db55d] mt-0.5 flex-shrink-0" />}
                           {testState === 'failed' && <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />}
                           
-                          <div className="flex-1 font-mono text-[11px]">
+                          <div className="flex-1 font-mono text-[10px] md:text-[11px]">
                             <span className="font-bold block text-xs">
                               {testState === 'testing' ? 'Testing network handshake...' :
                                testState === 'success' ? '✓ Server Connection Successful!' :
                                '✗ Connection Failed'}
                             </span>
-                            {errorMessage && <span className="block mt-1 text-[10px] opacity-80 leading-normal font-sans">{errorMessage}</span>}
+                            {errorMessage && <span className="block mt-1 text-[9px] md:text-[10px] opacity-80 leading-normal font-sans">{errorMessage}</span>}
                           </div>
                         </motion.div>
                       )}
@@ -307,18 +309,18 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -10 }}
-                      className="flex flex-col gap-4"
+                      className="flex flex-col gap-3.5 md:gap-4"
                     >
-                      <div className="bg-white/[0.02] border border-white/[0.04] px-5 py-3.5 rounded-2xl text-[11px] text-graphite-400 leading-normal font-mono flex gap-2">
+                      <div className="bg-white/[0.02] border border-white/[0.04] px-4 md:px-5 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl text-[10px] md:text-[11px] text-graphite-400 leading-normal font-mono flex gap-2">
                         <span className="font-bold flex-shrink-0">⚙</span>
                         <span>Tune the visual preferences of your coding editor panels. All configurations are stored locally and reflect in real time.</span>
                       </div>
 
                       {/* Font Size controls */}
-                      <div className="flex justify-between items-center bg-black/40 border border-white/[0.06] p-3.5 px-5 rounded-2xl">
+                      <div className="flex justify-between items-center bg-black/40 border border-white/[0.06] p-3 md:p-3.5 px-4 md:px-5 rounded-xl md:rounded-2xl">
                         <div>
-                          <span className="text-white font-semibold text-xs block">Editor Font Size</span>
-                          <span className="text-[10px] text-graphite-400 mt-0.5 block">Adjust text size of editor lines</span>
+                          <span className="text-white font-semibold text-[11px] md:text-xs block">Editor Font Size</span>
+                          <span className="text-[9px] md:text-[10px] text-graphite-400 mt-0.5 block">Adjust text size of editor lines</span>
                         </div>
                         <div className="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/[0.06]">
                           <motion.button 
@@ -329,7 +331,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                           >
                             <Minus className="w-3.5 h-3.5" />
                           </motion.button>
-                          <span className="w-10 text-center font-bold text-white text-xs tracking-tight font-mono">{preferences.fontSize}px</span>
+                          <span className="w-10 text-center font-bold text-white text-[11px] md:text-xs tracking-tight font-mono">{preferences.fontSize}px</span>
                           <motion.button 
                             whileTap={{ scale: 0.85 }}
                             onClick={() => handleFontSizeChange(1)}
@@ -345,13 +347,13 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       <button 
                         type="button"
                         onClick={() => updatePreferences({ lineWrapping: !preferences.lineWrapping })}
-                        className="flex justify-between items-center w-full bg-black/40 border border-white/[0.06] p-3.5 px-5 rounded-2xl hover:bg-white/[0.02] transition-colors group text-left"
+                        className="flex justify-between items-center w-full bg-black/40 border border-white/[0.06] p-3 md:p-3.5 px-4 md:px-5 rounded-xl md:rounded-2xl hover:bg-white/[0.02] transition-colors group text-left"
                       >
                         <div>
-                          <span className="text-white font-semibold text-xs block">Line Wrapping</span>
-                          <span className="text-[10px] text-graphite-400 mt-0.5 block">Wrap code lines exceeding editor boundaries</span>
+                          <span className="text-white font-semibold text-[11px] md:text-xs block">Line Wrapping</span>
+                          <span className="text-[9px] md:text-[10px] text-graphite-400 mt-0.5 block">Wrap code lines exceeding editor boundaries</span>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-200 border font-mono ${
+                        <span className={`px-2.5 md:px-3 py-0.5 md:py-1 rounded-full text-[9px] md:text-[10px] font-bold transition-all duration-200 border font-mono ${
                           preferences.lineWrapping 
                             ? 'bg-[#2db55d]/10 text-[#2db55d] border-[#2db55d]/25 shadow-[0_0_8px_rgba(45,181,93,0.08)]' 
                             : 'bg-black/30 text-graphite-400 border-white/[0.05]'
@@ -364,13 +366,13 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       <button 
                         type="button"
                         onClick={() => updatePreferences({ minimap: !preferences.minimap })}
-                        className="flex justify-between items-center w-full bg-black/40 border border-white/[0.06] p-3.5 px-5 rounded-2xl hover:bg-white/[0.02] transition-colors group text-left"
+                        className="flex justify-between items-center w-full bg-black/40 border border-white/[0.06] p-3 md:p-3.5 px-4 md:px-5 rounded-xl md:rounded-2xl hover:bg-white/[0.02] transition-colors group text-left"
                       >
                         <div>
-                          <span className="text-white font-semibold text-xs block">Editor Minimap</span>
-                          <span className="text-[10px] text-graphite-400 mt-0.5 block">Display high-level code minimap outline</span>
+                          <span className="text-white font-semibold text-[11px] md:text-xs block">Editor Minimap</span>
+                          <span className="text-[9px] md:text-[10px] text-graphite-400 mt-0.5 block">Display high-level code minimap outline</span>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-200 border font-mono ${
+                        <span className={`px-2.5 md:px-3 py-0.5 md:py-1 rounded-full text-[9px] md:text-[10px] font-bold transition-all duration-200 border font-mono ${
                           preferences.minimap 
                             ? 'bg-[#2db55d]/10 text-[#2db55d] border-[#2db55d]/25 shadow-[0_0_8px_rgba(45,181,93,0.08)]' 
                             : 'bg-black/30 text-graphite-400 border-white/[0.05]'
@@ -386,7 +388,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             </div>
 
             {/* Unified Footer */}
-            <div className="pl-[204px] pr-6 py-4 bg-charcoal-800/60 border-t border-white/[0.04] flex items-center justify-end gap-2.5 flex-shrink-0">
+            <div className="px-4 md:pl-[204px] md:pr-6 py-3.5 md:py-4 bg-charcoal-800/60 border-t border-white/[0.04] flex items-center justify-end gap-2 md:gap-2.5 flex-shrink-0">
               {activeTab === 'connection' ? (
                 <>
                   <motion.button
@@ -394,7 +396,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     whileTap={{ scale: 0.98 }}
                     onClick={handleTestConnection}
                     disabled={!ip || testState === 'testing'}
-                    className="mr-auto px-4 py-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] disabled:opacity-40 disabled:pointer-events-none border border-white/[0.06] text-graphite-200 text-xs font-semibold font-mono tracking-wide transition-all shadow-sm flex items-center gap-1.5"
+                    className="mr-auto px-3 md:px-4 py-2 md:py-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] disabled:opacity-40 disabled:pointer-events-none border border-white/[0.06] text-graphite-200 text-[11px] md:text-xs font-semibold font-mono tracking-wide transition-all shadow-sm flex items-center gap-1.5"
                   >
                     <Activity className="w-3.5 h-3.5" />
                     TEST
@@ -402,7 +404,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   
                   <button
                     onClick={onClose}
-                    className="px-5 py-2.5 rounded-full bg-transparent hover:bg-white/[0.04] text-graphite-300 hover:text-white text-xs font-semibold transition-colors"
+                    className="px-4 md:px-5 py-2 md:py-2.5 rounded-full bg-transparent hover:bg-white/[0.04] text-graphite-300 hover:text-white text-[11px] md:text-xs font-semibold transition-colors"
                   >
                     Cancel
                   </button>
@@ -411,7 +413,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     whileTap={{ scale: 0.98 }}
                     onClick={handleSave}
                     disabled={!ip}
-                    className="px-6 py-2.5 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-[#32c968] hover:to-[#22b55f] disabled:opacity-30 text-white text-xs font-bold font-mono tracking-wide transition-all border-t border-white/20 shadow-[0_4px_12px_rgba(45,181,93,0.2)]"
+                    className="px-5 md:px-6 py-2 md:py-2.5 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-[#32c968] hover:to-[#22b55f] disabled:opacity-30 text-white text-[11px] md:text-xs font-bold font-mono tracking-wide transition-all border-t border-white/20 shadow-[0_4px_12px_rgba(45,181,93,0.2)]"
                   >
                     SAVE
                   </motion.button>
@@ -421,7 +423,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={onClose}
-                  className="px-6 py-2.5 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-[#32c968] hover:to-[#22b55f] text-white text-xs font-bold font-mono tracking-wide transition-all border-t border-white/20 shadow-[0_4px_12px_rgba(45,181,93,0.2)] text-center cursor-pointer"
+                  className="px-5 md:px-6 py-2 md:py-2.5 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-[#32c968] hover:to-[#22b55f] text-white text-[11px] md:text-xs font-bold font-mono tracking-wide transition-all border-t border-white/20 shadow-[0_4px_12px_rgba(45,181,93,0.2)] text-center cursor-pointer"
                 >
                   DONE
                 </motion.button>
